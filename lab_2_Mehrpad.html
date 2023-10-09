@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab_2_mehrpad</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="lab_2_Mehrpad_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lab_2_Mehrpad_files/libs/quarto-html/quarto.js"></script>
+<script src="lab_2_Mehrpad_files/libs/quarto-html/popper.min.js"></script>
+<script src="lab_2_Mehrpad_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lab_2_Mehrpad_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lab_2_Mehrpad_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lab_2_Mehrpad_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lab_2_Mehrpad_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lab_2_Mehrpad_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lab_2_Mehrpad_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>avocado_base <span class="op">=</span> pd.read_csv(<span class="st">"C:/Users/mehrp/OneDrive/Documents/GitHub/lab_2_Mehrpad_M_Moattari/avocado-updated-2020.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li>Columns:</li>
+</ol>
+<p>date: The date of the observation.</p>
+<p>average_price: The average price of a single avocado.</p>
+<p>total_volume: Total number of avocados sold.</p>
+<p>4046, 4225, 4770: These columns represent the total number of avocados sold with their respective PLU codes.</p>
+<p>total_bags, small_bags, large_bags, xlarge_bags: These columns likely represent the total number of avocados sold in bags of various sizes.</p>
+<p>type: The type of avocado, either “conventional” or “organic”.</p>
+<p>year: The year of the observation.</p>
+<p>geography: The city or region of the observation.</p>
+<pre><code>Here's a summary of the dataset:</code></pre>
+<p>There are a total of 33,045 observations in the dataset.</p>
+<p>All columns have no missing values.</p>
+<p>The dataset spans from the year 2015 to 2020.</p>
+<p>There are two unique types of avocados: “conventional” and “organic”.</p>
+<p>The dataset covers 54 unique geographical locations.</p>
+<p>The average price of avocados over this period is approximately $1.38, with a minimum price of $0.44 and a maximum of $3.25.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#unique values in geogprahy column</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>unique_geographies <span class="op">=</span> avocado_base[<span class="st">'geography'</span>].unique()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>unique_geographies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>array(['Albany', 'Atlanta', 'Baltimore/Washington', 'Boise', 'Boston',
+       'Buffalo/Rochester', 'California', 'Charlotte', 'Chicago',
+       'Cincinnati/Dayton', 'Columbus', 'Dallas/Ft. Worth', 'Denver',
+       'Detroit', 'Grand Rapids', 'Great Lakes', 'Harrisburg/Scranton',
+       'Hartford/Springfield', 'Houston', 'Indianapolis', 'Jacksonville',
+       'Las Vegas', 'Los Angeles', 'Louisville', 'Miami/Ft. Lauderdale',
+       'Midsouth', 'Nashville', 'New Orleans/Mobile', 'New York',
+       'Northeast', 'Northern New England', 'Orlando', 'Philadelphia',
+       'Phoenix/Tucson', 'Pittsburgh', 'Plains', 'Portland',
+       'Raleigh/Greensboro', 'Richmond/Norfolk', 'Roanoke', 'Sacramento',
+       'San Diego', 'San Francisco', 'Seattle', 'South Carolina',
+       'South Central', 'Southeast', 'Spokane', 'St. Louis', 'Syracuse',
+       'Tampa', 'Total U.S.', 'West', 'West Tex/New Mexico'], dtype=object)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#categorizing geo regions</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>major_regions <span class="op">=</span> [<span class="st">'Total U.S.'</span>, <span class="st">'West'</span>, <span class="st">'Great Lakes'</span>, <span class="st">'Midsouth'</span>, <span class="st">'Northeast'</span>, <span class="st">'Plains'</span>, <span class="st">'Southeast'</span>, <span class="st">'South Central'</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>states_regions <span class="op">=</span> [<span class="st">'California'</span>, <span class="st">'South Carolina'</span>, <span class="st">'Northern New England'</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#new column 'geo_type' based on the categories</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>avocado_base[<span class="st">'geo_type'</span>] <span class="op">=</span> avocado_base[<span class="st">'geography'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="st">'Major Region'</span> <span class="cf">if</span> x <span class="kw">in</span> major_regions <span class="cf">else</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'State/Region'</span> <span class="cf">if</span> x <span class="kw">in</span> states_regions <span class="cf">else</span> <span class="st">'Metro/City'</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>avocado_base.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">average_price</th>
+<th data-quarto-table-cell-role="th">total_volume</th>
+<th data-quarto-table-cell-role="th">4046</th>
+<th data-quarto-table-cell-role="th">4225</th>
+<th data-quarto-table-cell-role="th">4770</th>
+<th data-quarto-table-cell-role="th">total_bags</th>
+<th data-quarto-table-cell-role="th">small_bags</th>
+<th data-quarto-table-cell-role="th">large_bags</th>
+<th data-quarto-table-cell-role="th">xlarge_bags</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">geography</th>
+<th data-quarto-table-cell-role="th">geo_type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1/4/2015</td>
+<td>1.22</td>
+<td>40873.28</td>
+<td>2819.50</td>
+<td>28287.42</td>
+<td>49.90</td>
+<td>9716.46</td>
+<td>9186.93</td>
+<td>529.53</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Albany</td>
+<td>Metro/City</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1/4/2015</td>
+<td>1.79</td>
+<td>1373.95</td>
+<td>57.42</td>
+<td>153.88</td>
+<td>0.00</td>
+<td>1162.65</td>
+<td>1162.65</td>
+<td>0.00</td>
+<td>0.0</td>
+<td>organic</td>
+<td>2015</td>
+<td>Albany</td>
+<td>Metro/City</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1/4/2015</td>
+<td>1.00</td>
+<td>435021.49</td>
+<td>364302.39</td>
+<td>23821.16</td>
+<td>82.15</td>
+<td>46815.79</td>
+<td>16707.15</td>
+<td>30108.64</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Atlanta</td>
+<td>Metro/City</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1/4/2015</td>
+<td>1.76</td>
+<td>3846.69</td>
+<td>1500.15</td>
+<td>938.35</td>
+<td>0.00</td>
+<td>1408.19</td>
+<td>1071.35</td>
+<td>336.84</td>
+<td>0.0</td>
+<td>organic</td>
+<td>2015</td>
+<td>Atlanta</td>
+<td>Metro/City</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1/4/2015</td>
+<td>1.08</td>
+<td>788025.06</td>
+<td>53987.31</td>
+<td>552906.04</td>
+<td>39995.03</td>
+<td>141136.68</td>
+<td>137146.07</td>
+<td>3990.61</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Baltimore/Washington</td>
+<td>Metro/City</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename the columns</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>avocado_base.rename(columns<span class="op">=</span>{<span class="st">'4046'</span>: <span class="st">'small_avocado'</span>, <span class="st">'4225'</span>: <span class="st">'medium_avocado'</span>, <span class="st">'4770'</span>: <span class="st">'large_avocado'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>avocado_base.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">average_price</th>
+<th data-quarto-table-cell-role="th">total_volume</th>
+<th data-quarto-table-cell-role="th">small_avocado</th>
+<th data-quarto-table-cell-role="th">medium_avocado</th>
+<th data-quarto-table-cell-role="th">large_avocado</th>
+<th data-quarto-table-cell-role="th">total_bags</th>
+<th data-quarto-table-cell-role="th">small_bags</th>
+<th data-quarto-table-cell-role="th">large_bags</th>
+<th data-quarto-table-cell-role="th">xlarge_bags</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">geography</th>
+<th data-quarto-table-cell-role="th">geo_type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1/4/2015</td>
+<td>1.22</td>
+<td>40873.28</td>
+<td>2819.50</td>
+<td>28287.42</td>
+<td>49.90</td>
+<td>9716.46</td>
+<td>9186.93</td>
+<td>529.53</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Albany</td>
+<td>Metro/City</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1/4/2015</td>
+<td>1.79</td>
+<td>1373.95</td>
+<td>57.42</td>
+<td>153.88</td>
+<td>0.00</td>
+<td>1162.65</td>
+<td>1162.65</td>
+<td>0.00</td>
+<td>0.0</td>
+<td>organic</td>
+<td>2015</td>
+<td>Albany</td>
+<td>Metro/City</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1/4/2015</td>
+<td>1.00</td>
+<td>435021.49</td>
+<td>364302.39</td>
+<td>23821.16</td>
+<td>82.15</td>
+<td>46815.79</td>
+<td>16707.15</td>
+<td>30108.64</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Atlanta</td>
+<td>Metro/City</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1/4/2015</td>
+<td>1.76</td>
+<td>3846.69</td>
+<td>1500.15</td>
+<td>938.35</td>
+<td>0.00</td>
+<td>1408.19</td>
+<td>1071.35</td>
+<td>336.84</td>
+<td>0.0</td>
+<td>organic</td>
+<td>2015</td>
+<td>Atlanta</td>
+<td>Metro/City</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1/4/2015</td>
+<td>1.08</td>
+<td>788025.06</td>
+<td>53987.31</td>
+<td>552906.04</td>
+<td>39995.03</td>
+<td>141136.68</td>
+<td>137146.07</td>
+<td>3990.61</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Baltimore/Washington</td>
+<td>Metro/City</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#'date' column to a datetime format</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>avocado_base[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(avocado_base[<span class="st">'date'</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#month, day, and year from the 'date'</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>avocado_base[<span class="st">'month'</span>] <span class="op">=</span> avocado_base[<span class="st">'date'</span>].dt.month</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>avocado_base[<span class="st">'day'</span>] <span class="op">=</span> avocado_base[<span class="st">'date'</span>].dt.day</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#already have a 'year' column</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>avocado_base.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">average_price</th>
+<th data-quarto-table-cell-role="th">total_volume</th>
+<th data-quarto-table-cell-role="th">small_avocado</th>
+<th data-quarto-table-cell-role="th">medium_avocado</th>
+<th data-quarto-table-cell-role="th">large_avocado</th>
+<th data-quarto-table-cell-role="th">total_bags</th>
+<th data-quarto-table-cell-role="th">small_bags</th>
+<th data-quarto-table-cell-role="th">large_bags</th>
+<th data-quarto-table-cell-role="th">xlarge_bags</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">geography</th>
+<th data-quarto-table-cell-role="th">geo_type</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2015-01-04</td>
+<td>1.22</td>
+<td>40873.28</td>
+<td>2819.50</td>
+<td>28287.42</td>
+<td>49.90</td>
+<td>9716.46</td>
+<td>9186.93</td>
+<td>529.53</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Albany</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2015-01-04</td>
+<td>1.79</td>
+<td>1373.95</td>
+<td>57.42</td>
+<td>153.88</td>
+<td>0.00</td>
+<td>1162.65</td>
+<td>1162.65</td>
+<td>0.00</td>
+<td>0.0</td>
+<td>organic</td>
+<td>2015</td>
+<td>Albany</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2015-01-04</td>
+<td>1.00</td>
+<td>435021.49</td>
+<td>364302.39</td>
+<td>23821.16</td>
+<td>82.15</td>
+<td>46815.79</td>
+<td>16707.15</td>
+<td>30108.64</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Atlanta</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2015-01-04</td>
+<td>1.76</td>
+<td>3846.69</td>
+<td>1500.15</td>
+<td>938.35</td>
+<td>0.00</td>
+<td>1408.19</td>
+<td>1071.35</td>
+<td>336.84</td>
+<td>0.0</td>
+<td>organic</td>
+<td>2015</td>
+<td>Atlanta</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2015-01-04</td>
+<td>1.08</td>
+<td>788025.06</td>
+<td>53987.31</td>
+<td>552906.04</td>
+<td>39995.03</td>
+<td>141136.68</td>
+<td>137146.07</td>
+<td>3990.61</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Baltimore/Washington</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>3.Which major geographical region sold the most total organic, small Hass avocados in 2017?</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#data for 2017</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>filtered_data_q3 <span class="op">=</span> avocado_base[(avocado_base[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2017</span>) <span class="op">&amp;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    (avocado_base[<span class="st">'type'</span>] <span class="op">==</span> <span class="st">'organic'</span>) <span class="op">&amp;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    (avocado_base[<span class="st">'geo_type'</span>] <span class="op">==</span> <span class="st">'Major Region'</span>)]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#sum the small avocado sales</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>grouped_data_q3 <span class="op">=</span> filtered_data_q3.groupby(<span class="st">'geography'</span>)[<span class="st">'small_avocado'</span>].<span class="bu">sum</span>()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#most small organic avocados in 2017</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>max_sales_region <span class="op">=</span> grouped_data_q3.idxmax()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>max_sales_value <span class="op">=</span> grouped_data_q3.<span class="bu">max</span>()</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>(max_sales_region, max_sales_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>('Total U.S.', 6882024.42)</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>In 2017, the major geographical region “Total U.S.” sold the most total organic, small Hass avocados with a total volume of approximately 6,882,024.42 units.</li>
+</ol>
+<p>Split the date variable into month, day, and year variables. In which month is the highest average volume of avocado sales?</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#group by month and calculate the average total volume for each month</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>average_sales_per_month <span class="op">=</span> avocado_base.groupby(<span class="st">'month'</span>)[<span class="st">'total_volume'</span>].mean()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#highest average volume of avocado sales (month)</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>max_sales_month <span class="op">=</span> average_sales_per_month.idxmax()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>max_sales_avg_value <span class="op">=</span> average_sales_per_month.<span class="bu">max</span>()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>(max_sales_month, max_sales_avg_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>(5, 1123632.254218107)</code></pre>
+</div>
+</div>
+<p>The month of May (represented as 5) has the highest average volume of avocado sales, with an average volume of approximately 1,123,632.25 units across all the years in the dataset.</p>
+<p>5.Which metro area geographical regions sold the most total avocados? Plot side-by-side box-plots of the total volume for only the five metro geographical regions with the highest averages for the total_volume variable.</p>
+<p>Added an additional plot for question #5.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Metro/City geo_type</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>metro_data <span class="op">=</span> avocado_base[avocado_base[<span class="st">'geo_type'</span>] <span class="op">==</span> <span class="st">'Metro/City'</span>]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#average total</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>average_sales_per_metro <span class="op">=</span> metro_data.groupby(<span class="st">'geography'</span>)[<span class="st">'total_volume'</span>].mean()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#top 5 metro areas with highest average total</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>top5_metro_areas <span class="op">=</span> average_sales_per_metro.nlargest(<span class="dv">5</span>).index</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#top 5 metro areas</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>top5_metro_data <span class="op">=</span> avocado_base[avocado_base[<span class="st">'geography'</span>].isin(top5_metro_areas)]</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">8</span>))</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>top5_metro_data, x<span class="op">=</span><span class="st">'geography'</span>, y<span class="op">=</span><span class="st">'total_volume'</span>, showfliers<span class="op">=</span><span class="va">False</span>) <span class="co">#excluding outliers</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Box-plot of Total Volume for Top 5 Metro Areas with Highest Average Sales'</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Total Volume'</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Metro Area'</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="lab_2_Mehrpad_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>As shown in the plot above, Los Angeles has the highest average among the top 5 metro regions.</p>
+<p>The following four California geographical regions are in this data set: “Los Angeles”, “San Diego”, “Sacramento”, and “San Francisco”.</p>
+<ol start="6" type="1">
+<li>From your cleaned data set, create a data set with only these California regions and answer the following questions about these California regions only.</li>
+</ol>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#California regions</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>california_regions <span class="op">=</span> [<span class="st">"Los Angeles"</span>, <span class="st">"San Diego"</span>, <span class="st">"Sacramento"</span>, <span class="st">"San Francisco"</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>california_data <span class="op">=</span> avocado_base[avocado_base[<span class="st">'geography'</span>].isin(california_regions)]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>california_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">average_price</th>
+<th data-quarto-table-cell-role="th">total_volume</th>
+<th data-quarto-table-cell-role="th">small_avocado</th>
+<th data-quarto-table-cell-role="th">medium_avocado</th>
+<th data-quarto-table-cell-role="th">large_avocado</th>
+<th data-quarto-table-cell-role="th">total_bags</th>
+<th data-quarto-table-cell-role="th">small_bags</th>
+<th data-quarto-table-cell-role="th">large_bags</th>
+<th data-quarto-table-cell-role="th">xlarge_bags</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">geography</th>
+<th data-quarto-table-cell-role="th">geo_type</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">44</td>
+<td>2015-01-04</td>
+<td>0.85</td>
+<td>2682159.95</td>
+<td>1837999.65</td>
+<td>524430.47</td>
+<td>64225.78</td>
+<td>255504.05</td>
+<td>215571.80</td>
+<td>36981.72</td>
+<td>2950.53</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Los Angeles</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">45</td>
+<td>2015-01-04</td>
+<td>1.25</td>
+<td>54495.54</td>
+<td>47721.51</td>
+<td>1723.40</td>
+<td>0.00</td>
+<td>5050.63</td>
+<td>5050.63</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>organic</td>
+<td>2015</td>
+<td>Los Angeles</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">80</td>
+<td>2015-01-04</td>
+<td>1.05</td>
+<td>430138.88</td>
+<td>110693.69</td>
+<td>270107.61</td>
+<td>9737.50</td>
+<td>39600.08</td>
+<td>39600.08</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Sacramento</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">81</td>
+<td>2015-01-04</td>
+<td>1.33</td>
+<td>9213.49</td>
+<td>3727.52</td>
+<td>4327.52</td>
+<td>0.00</td>
+<td>1158.45</td>
+<td>1158.45</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>organic</td>
+<td>2015</td>
+<td>Sacramento</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">82</td>
+<td>2015-01-04</td>
+<td>0.94</td>
+<td>461607.33</td>
+<td>244152.26</td>
+<td>165299.33</td>
+<td>15302.75</td>
+<td>36852.99</td>
+<td>30884.29</td>
+<td>5595.00</td>
+<td>373.70</td>
+<td>conventional</td>
+<td>2015</td>
+<td>San Diego</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ol start="7" type="1">
+<li>In which California regions is the price of organic versus conventional avocados most different? Support your answer with a few summary statistics AND a visualization.</li>
+</ol>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#the average price for each combo</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>avg_prices <span class="op">=</span> california_data.groupby([<span class="st">'geography'</span>, <span class="st">'type'</span>])[<span class="st">'average_price'</span>].mean().unstack()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#the price difference between organic and conventional avocados for each region</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>avg_prices[<span class="st">'price_difference'</span>] <span class="op">=</span> avg_prices[<span class="st">'organic'</span>] <span class="op">-</span> avg_prices[<span class="st">'conventional'</span>]</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>avg_prices</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">conventional</th>
+<th data-quarto-table-cell-role="th">organic</th>
+<th data-quarto-table-cell-role="th">price_difference</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Los Angeles</td>
+<td>1.047124</td>
+<td>1.574902</td>
+<td>0.527778</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sacramento</td>
+<td>1.295359</td>
+<td>1.873856</td>
+<td>0.578497</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">San Diego</td>
+<td>1.113856</td>
+<td>1.798366</td>
+<td>0.684510</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">San Francisco</td>
+<td>1.400490</td>
+<td>2.119444</td>
+<td>0.718954</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<pre><code>Los Angeles:</code></pre>
+<p>Conventional: $1.05</p>
+<p>Organic: $1.57</p>
+<p>Price Difference: $0.53</p>
+<pre><code>Sacramento:</code></pre>
+<p>Conventional: $1.30</p>
+<p>Organic: $1.87</p>
+<p>Price Difference: $0.58</p>
+<pre><code>San Diego:</code></pre>
+<p>Conventional: $1.11</p>
+<p>Organic: $1.80</p>
+<p>Price Difference: $0.68</p>
+<pre><code>San Francisco:</code></pre>
+<p>Conventional: $1.40</p>
+<p>Organic: $2.12</p>
+<p>Price Difference: $0.72</p>
+<p>From the calculated values, we can see that the San Francisco region has the most significant price difference between organic and conventional avocados, with a difference of approximately $0.72.</p>
+<p>Summary statistics AND a visualization part:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">8</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>california_data, x<span class="op">=</span><span class="st">'geography'</span>, y<span class="op">=</span><span class="st">'average_price'</span>, hue<span class="op">=</span><span class="st">'type'</span>, showfliers<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Box-plot of Avocado Prices for Specified California Regions by Type'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Average Price ($)'</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'California Region'</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Type'</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="lab_2_Mehrpad_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The median price of organic avocados is consistently higher than that of conventional avocados across all regions.</p>
+<p>San Francisco not only has the largest price difference between organic and conventional avocados, as indicated by our earlier calculations, but also has the highest overall prices for both organic and conventional avocados among the specified regions.</p>
+<p>8-</p>
+<p>Data transformation:</p>
+<p>a- Calculating the average sales.</p>
+<p>b- Reshaping the Data.</p>
+<p>c- Undrestanding proportions.</p>
+<p>d- Plot for better undrestanding.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>california_data_renamed <span class="op">=</span> california_data.rename(columns<span class="op">=</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>             {<span class="st">'small_avocado'</span>: <span class="st">'S/M'</span>, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">'medium_avocado'</span>: <span class="st">'L'</span>, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">'large_avocado'</span>: <span class="st">'XL'</span>})</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#long Format by Adding Size Column for Avocados</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>cali_long <span class="op">=</span> pd.melt(california_data_renamed, id_vars<span class="op">=</span>[<span class="st">'geography'</span>, <span class="st">'type'</span>], </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                    value_vars<span class="op">=</span>[<span class="st">'S/M'</span>, <span class="st">'L'</span>, <span class="st">'XL'</span>], var_name<span class="op">=</span><span class="st">'size'</span>, value_name<span class="op">=</span><span class="st">'amount'</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#the mean after grouping by City, Type, and Size</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>cali_long_average <span class="op">=</span> cali_long.groupby([<span class="st">'geography'</span>, <span class="st">'type'</span>, <span class="st">'size'</span>]).mean()</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert back to regular DataFrame by resetting the index of the groupby output</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>cali_long_average_df <span class="op">=</span> cali_long_average.reset_index()</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>cali_long_average_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geography</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th">amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Los Angeles</td>
+<td>conventional</td>
+<td>L</td>
+<td>4.438423e+05</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Los Angeles</td>
+<td>conventional</td>
+<td>S/M</td>
+<td>1.172952e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Los Angeles</td>
+<td>conventional</td>
+<td>XL</td>
+<td>9.707364e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Los Angeles</td>
+<td>organic</td>
+<td>L</td>
+<td>2.080422e+04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Los Angeles</td>
+<td>organic</td>
+<td>S/M</td>
+<td>1.444206e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Los Angeles</td>
+<td>organic</td>
+<td>XL</td>
+<td>6.035294e+00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Sacramento</td>
+<td>conventional</td>
+<td>L</td>
+<td>2.430051e+05</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Sacramento</td>
+<td>conventional</td>
+<td>S/M</td>
+<td>1.412831e+05</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Sacramento</td>
+<td>conventional</td>
+<td>XL</td>
+<td>6.333280e+03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>Sacramento</td>
+<td>organic</td>
+<td>L</td>
+<td>4.282693e+03</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>Sacramento</td>
+<td>organic</td>
+<td>S/M</td>
+<td>2.808893e+03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>Sacramento</td>
+<td>organic</td>
+<td>XL</td>
+<td>7.726797e-01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>San Diego</td>
+<td>conventional</td>
+<td>L</td>
+<td>1.401061e+05</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>San Diego</td>
+<td>conventional</td>
+<td>S/M</td>
+<td>1.637928e+05</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>San Diego</td>
+<td>conventional</td>
+<td>XL</td>
+<td>1.796354e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>San Diego</td>
+<td>organic</td>
+<td>L</td>
+<td>7.273785e+03</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>San Diego</td>
+<td>organic</td>
+<td>S/M</td>
+<td>2.573068e+03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>San Diego</td>
+<td>organic</td>
+<td>XL</td>
+<td>1.323595e+00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>San Francisco</td>
+<td>conventional</td>
+<td>L</td>
+<td>4.493774e+05</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>San Francisco</td>
+<td>conventional</td>
+<td>S/M</td>
+<td>2.158398e+05</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>San Francisco</td>
+<td>conventional</td>
+<td>XL</td>
+<td>1.493160e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>San Francisco</td>
+<td>organic</td>
+<td>L</td>
+<td>1.135010e+04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>San Francisco</td>
+<td>organic</td>
+<td>S/M</td>
+<td>8.303041e+03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>San Francisco</td>
+<td>organic</td>
+<td>XL</td>
+<td>2.159346e+00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> ggplot, geom_col, aes, facet_wrap, theme, ylab, xlab, scale_y_continuous, scale_fill_manual</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>custom_colors <span class="op">=</span> {</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'S/M'</span>: <span class="st">'darkorange'</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'L'</span>: <span class="st">'darkgreen'</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'XL'</span>: <span class="st">'purple'</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> (</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    ggplot(cali_long_average_df, aes(x <span class="op">=</span> <span class="st">"geography"</span>, y <span class="op">=</span> <span class="st">"amount"</span>, fill <span class="op">=</span> <span class="st">"size"</span>)) </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_col(position<span class="op">=</span><span class="st">"fill"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> scale_y_continuous(labels<span class="op">=</span><span class="kw">lambda</span> l: [<span class="st">"</span><span class="sc">{:.0%}</span><span class="st">"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l])</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> scale_fill_manual(values<span class="op">=</span>custom_colors)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> facet_wrap(<span class="st">"type"</span>)  </span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> theme(figure_size<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> ylab(<span class="st">"Proportion"</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> xlab(<span class="st">"Region of California"</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="lab_2_Mehrpad_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>&lt;Figure Size: (1000 x 500)&gt;</code></pre>
+</div>
+</div>
+<p>Using Outside Data</p>
+<p>Find or make a data set with house prices for these four California regions. Join this data set with your California avocado data set.</p>
+<p>Use your new joined data set to make an argument about the relationship between house prices and avocado prices/sales.</p>
+<p>Support your argument with a plot.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>california_housing <span class="op">=</span> pd.read_csv(<span class="st">"C:/Users/mehrp/OneDrive/Documents/GitHub/lab_2_Mehrpad_M_Moattari/2022_average_housing_dataset.csv"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>california_housing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">City</th>
+<th data-quarto-table-cell-role="th">Neighborhood</th>
+<th data-quarto-table-cell-role="th">House_Type</th>
+<th data-quarto-table-cell-role="th">Bedrooms</th>
+<th data-quarto-table-cell-role="th">Bathrooms</th>
+<th data-quarto-table-cell-role="th">Square_Feet</th>
+<th data-quarto-table-cell-role="th">Year_Built</th>
+<th data-quarto-table-cell-role="th">Price</th>
+<th data-quarto-table-cell-role="th">Days_on_Market</th>
+<th data-quarto-table-cell-role="th">Monthly_Mortgage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Sacramento</td>
+<td>Natomas</td>
+<td>Single Family</td>
+<td>3</td>
+<td>3.0</td>
+<td>3692</td>
+<td>2002</td>
+<td>1754438.40</td>
+<td>89</td>
+<td>7878.212436</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Sacramento</td>
+<td>Natomas</td>
+<td>Single Family</td>
+<td>4</td>
+<td>2.0</td>
+<td>2285</td>
+<td>1952</td>
+<td>972724.50</td>
+<td>16</td>
+<td>4367.967694</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Sacramento</td>
+<td>Land Park</td>
+<td>Condo</td>
+<td>2</td>
+<td>2.5</td>
+<td>2924</td>
+<td>1932</td>
+<td>863164.80</td>
+<td>72</td>
+<td>3875.995681</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sacramento</td>
+<td>East Sac</td>
+<td>Single Family</td>
+<td>4</td>
+<td>1.0</td>
+<td>1074</td>
+<td>1958</td>
+<td>463581.36</td>
+<td>56</td>
+<td>2081.687471</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Sacramento</td>
+<td>Land Park</td>
+<td>Townhouse</td>
+<td>3</td>
+<td>2.5</td>
+<td>1867</td>
+<td>1963</td>
+<td>741012.30</td>
+<td>17</td>
+<td>3327.476369</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">795</td>
+<td>San Francisco</td>
+<td>Nob Hill</td>
+<td>Condo</td>
+<td>2</td>
+<td>1.5</td>
+<td>3499</td>
+<td>1911</td>
+<td>2395555.36</td>
+<td>18</td>
+<td>10757.114088</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">796</td>
+<td>San Francisco</td>
+<td>Sunset District</td>
+<td>Townhouse</td>
+<td>1</td>
+<td>1.0</td>
+<td>2201</td>
+<td>1929</td>
+<td>1970775.40</td>
+<td>17</td>
+<td>8849.662242</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">797</td>
+<td>San Francisco</td>
+<td>Mission District</td>
+<td>Single Family</td>
+<td>1</td>
+<td>2.5</td>
+<td>2056</td>
+<td>2015</td>
+<td>2452931.36</td>
+<td>76</td>
+<td>11014.757968</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">798</td>
+<td>San Francisco</td>
+<td>Downtown</td>
+<td>Single Family</td>
+<td>4</td>
+<td>3.0</td>
+<td>3814</td>
+<td>2021</td>
+<td>4605710.12</td>
+<td>66</td>
+<td>20681.696630</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">799</td>
+<td>San Francisco</td>
+<td>Sunset District</td>
+<td>Condo</td>
+<td>1</td>
+<td>3.0</td>
+<td>1583</td>
+<td>2020</td>
+<td>1387467.84</td>
+<td>19</td>
+<td>6230.350631</td>
+</tr>
+</tbody>
+</table>
+
+<p>800 rows × 10 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#the mean of average housing prices for each city</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>mean_housing_prices <span class="op">=</span> california_housing.groupby(<span class="st">'City'</span>)[<span class="st">'Price'</span>].mean().reset_index()</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>mean_housing_prices.columns <span class="op">=</span> [<span class="st">'geography'</span>, <span class="st">'mean_housing_price'</span>]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#merge </span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>merged_data_housing <span class="op">=</span> pd.merge(avocado_base, mean_housing_prices, on<span class="op">=</span><span class="st">'geography'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>merged_data_housing.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">average_price</th>
+<th data-quarto-table-cell-role="th">total_volume</th>
+<th data-quarto-table-cell-role="th">small_avocado</th>
+<th data-quarto-table-cell-role="th">medium_avocado</th>
+<th data-quarto-table-cell-role="th">large_avocado</th>
+<th data-quarto-table-cell-role="th">total_bags</th>
+<th data-quarto-table-cell-role="th">small_bags</th>
+<th data-quarto-table-cell-role="th">large_bags</th>
+<th data-quarto-table-cell-role="th">xlarge_bags</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">geography</th>
+<th data-quarto-table-cell-role="th">geo_type</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">mean_housing_price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2015-01-04</td>
+<td>1.22</td>
+<td>40873.28</td>
+<td>2819.50</td>
+<td>28287.42</td>
+<td>49.90</td>
+<td>9716.46</td>
+<td>9186.93</td>
+<td>529.53</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Albany</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2015-01-04</td>
+<td>1.79</td>
+<td>1373.95</td>
+<td>57.42</td>
+<td>153.88</td>
+<td>0.00</td>
+<td>1162.65</td>
+<td>1162.65</td>
+<td>0.00</td>
+<td>0.0</td>
+<td>organic</td>
+<td>2015</td>
+<td>Albany</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2015-01-04</td>
+<td>1.00</td>
+<td>435021.49</td>
+<td>364302.39</td>
+<td>23821.16</td>
+<td>82.15</td>
+<td>46815.79</td>
+<td>16707.15</td>
+<td>30108.64</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Atlanta</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2015-01-04</td>
+<td>1.76</td>
+<td>3846.69</td>
+<td>1500.15</td>
+<td>938.35</td>
+<td>0.00</td>
+<td>1408.19</td>
+<td>1071.35</td>
+<td>336.84</td>
+<td>0.0</td>
+<td>organic</td>
+<td>2015</td>
+<td>Atlanta</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2015-01-04</td>
+<td>1.08</td>
+<td>788025.06</td>
+<td>53987.31</td>
+<td>552906.04</td>
+<td>39995.03</td>
+<td>141136.68</td>
+<td>137146.07</td>
+<td>3990.61</td>
+<td>0.0</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Baltimore/Washington</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#the merged dataset for California data</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>california_merged_data <span class="op">=</span> merged_data_housing[merged_data_housing[<span class="st">'geography'</span>].isin(california_regions)]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>california_merged_data.head()</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">average_price</th>
+<th data-quarto-table-cell-role="th">total_volume</th>
+<th data-quarto-table-cell-role="th">small_avocado</th>
+<th data-quarto-table-cell-role="th">medium_avocado</th>
+<th data-quarto-table-cell-role="th">large_avocado</th>
+<th data-quarto-table-cell-role="th">total_bags</th>
+<th data-quarto-table-cell-role="th">small_bags</th>
+<th data-quarto-table-cell-role="th">large_bags</th>
+<th data-quarto-table-cell-role="th">xlarge_bags</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">geography</th>
+<th data-quarto-table-cell-role="th">geo_type</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">mean_housing_price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">44</td>
+<td>2015-01-04</td>
+<td>0.85</td>
+<td>2682159.95</td>
+<td>1837999.65</td>
+<td>524430.47</td>
+<td>64225.78</td>
+<td>255504.05</td>
+<td>215571.80</td>
+<td>36981.72</td>
+<td>2950.53</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Los Angeles</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>1.517923e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">45</td>
+<td>2015-01-04</td>
+<td>1.25</td>
+<td>54495.54</td>
+<td>47721.51</td>
+<td>1723.40</td>
+<td>0.00</td>
+<td>5050.63</td>
+<td>5050.63</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>organic</td>
+<td>2015</td>
+<td>Los Angeles</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>1.517923e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">80</td>
+<td>2015-01-04</td>
+<td>1.05</td>
+<td>430138.88</td>
+<td>110693.69</td>
+<td>270107.61</td>
+<td>9737.50</td>
+<td>39600.08</td>
+<td>39600.08</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>conventional</td>
+<td>2015</td>
+<td>Sacramento</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>8.899973e+05</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">81</td>
+<td>2015-01-04</td>
+<td>1.33</td>
+<td>9213.49</td>
+<td>3727.52</td>
+<td>4327.52</td>
+<td>0.00</td>
+<td>1158.45</td>
+<td>1158.45</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>organic</td>
+<td>2015</td>
+<td>Sacramento</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>8.899973e+05</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">82</td>
+<td>2015-01-04</td>
+<td>0.94</td>
+<td>461607.33</td>
+<td>244152.26</td>
+<td>165299.33</td>
+<td>15302.75</td>
+<td>36852.99</td>
+<td>30884.29</td>
+<td>5595.00</td>
+<td>373.70</td>
+<td>conventional</td>
+<td>2015</td>
+<td>San Diego</td>
+<td>Metro/City</td>
+<td>1</td>
+<td>4</td>
+<td>1.221984e+06</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filter for only organic type and group by the geography column to calculate the mean prices</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>organic_california_prices <span class="op">=</span> california_merged_data[california_merged_data[<span class="st">'type'</span>] <span class="op">==</span> <span class="st">'organic'</span>].groupby(<span class="st">'geography'</span>).agg({</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'average_price'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mean_housing_price'</span>: <span class="st">'mean'</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>}).reset_index()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>organic_california_prices</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geography</th>
+<th data-quarto-table-cell-role="th">average_price</th>
+<th data-quarto-table-cell-role="th">mean_housing_price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Los Angeles</td>
+<td>1.574902</td>
+<td>1.517923e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Sacramento</td>
+<td>1.873856</td>
+<td>8.899973e+05</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>San Diego</td>
+<td>1.798366</td>
+<td>1.221984e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>San Francisco</td>
+<td>2.119444</td>
+<td>2.190624e+06</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#a regression line to visually assess correlation</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">'average_price'</span>, y<span class="op">=</span><span class="st">'mean_housing_price'</span>, data<span class="op">=</span>organic_california_prices, scatter_kws<span class="op">=</span>{<span class="st">'s'</span>: <span class="dv">150</span>}, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#each point with the city name</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> organic_california_prices.iterrows():</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    plt.text(row[<span class="st">'average_price'</span>], row[<span class="st">'mean_housing_price'</span>], row[<span class="st">'geography'</span>], </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>             horizontalalignment<span class="op">=</span><span class="st">'right'</span> <span class="cf">if</span> row[<span class="st">'geography'</span>] <span class="op">==</span> <span class="st">'San Francisco'</span> <span class="cf">else</span> <span class="st">'left'</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Organic Avocado Prices vs. Housing Prices'</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Average Housing Price ($)'</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Average Organic Avocado Price ($)'</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">#the correlation coefficient calculation</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>correlation_coefficient <span class="op">=</span> organic_california_prices[<span class="st">'average_price'</span>].corr(organic_california_prices[<span class="st">'mean_housing_price'</span>])</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>correlation_coefficient</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="lab_2_Mehrpad_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>0.4814647318337239</code></pre>
+</div>
+</div>
+<p>The calculated correlation coefficient is approximately 0.481. This indicates a moderate positive relationship between avocado prices and housing prices. In other words, cities with higher avocado prices tend to also have higher housing prices, and vice versa.</p>
+<p>However, it’s essential to note that correlation does not imply causation. While there’s a positive correlation between the two variables, it doesn’t necessarily mean that higher avocado prices cause higher housing prices or vice versa.</p>
+<p>But maybe for SanFran the joke is somewhat accurate.</p>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
